@@ -1,18 +1,16 @@
 ## how to use HDWSDK as http api?
 
 ```
-
 $ npm install
 
 $ npm start
-
 ```
 
 Open http://localhost:3021, That's all!
 
 ## how to use HDWSDK in html?
 
-`
+```
 <!DOCTYPE html>
 <html>
     <head lang="en">
@@ -25,7 +23,7 @@ Open http://localhost:3021, That's all!
         <script src="hdwsdk.min.js"></script>
     </body>
 </html>
-`
+```
 
 Press F12, in the console, type "window.hdWallet", it's the instance you could use in your code.
 
