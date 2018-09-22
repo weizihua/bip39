@@ -11,7 +11,7 @@ module.exports = {
       filename: 'hdwsdk.min.js',
    },
    plugins: [
-      // new UglifyJsPlugin()
+      new UglifyJsPlugin()
    ],
    devtool: "source-map"
 }
