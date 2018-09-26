@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head lang="en">
-        <meta charset="utf-8" />
-        <title>HdWallet SDK</title>
-        <meta content="HdWallet SDK" name="description"/>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    </head>
-    <body>
-        <script src="hdwsdk.min.js"></script>
-    </body>
+
+<head lang="en">
+   <meta charset="utf-8" />
+   <title>HdWallet SDK</title>
+   <meta content="HdWallet SDK" name="description" />
+   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+</head>
+
+<body>
+   <script src="hdwsdk.min.js"></script>
+   <script>
+      function setupWebViewJavascriptBridge(callback) {
+         if (window.WebViewJavascriptBridge) {
+            return callback(WebViewJavascriptBridge);
+         }
+         if (window.WVJBCallbacks) {
+            return window.WVJBCallbacks.push(callback);
+         }
+         window.WVJBCallbacks = [callback];
+         var WVJBIframe = document.createElement('iframe');
+         WVJBIframe.style.display = 'none';
+         WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+         document.documentElement.appendChild(WVJBIframe);
+         setTimeout(function () {
+            document.documentElement.removeChild(WVJBIframe)
+         }, 0)
+      };
+      setupWebViewJavascriptBridge(function (bridge) {
+         bridge.registerHandler('generateMnemonic', function (data, responseCallback) {
+            responseCallback(window.hdWallet.generateMnemonic(data));
+         })
+      });
+   </script>
+</body>
+
 </html>

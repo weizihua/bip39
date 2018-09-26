@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
+   mode: "production",
    entry: {
       entry: __dirname + '/src/hdwsdk.js'
    },
@@ -11,7 +12,7 @@ module.exports = {
       filename: 'hdwsdk.min.js',
    },
    plugins: [
-      // new UglifyJsPlugin()
+      new UglifyJsPlugin()
    ],
    devtool: "source-map"
 }

@@ -3,12 +3,21 @@ var bip39 = require('bip39')
 class HdWallet {
    constructor() {}
 
+   result(status, data, code) {
+      return {
+         status: status, //bool
+         data: data, //any
+         code: code //int
+      };
+   }
+
    generateMnemonic(numWords) {
       numWords = (numWords || 15);
       if (numWords < 12)
-         throw "numWords should >= 12 length";
+         return this.result(false, null, 2000);
+      //throw "numWords should >= 12 length";
       var strength = numWords / 3 * 32;
-      return bip39.generateMnemonic(strength);
+      return this.result(true, bip39.generateMnemonic(strength), 0);
    }
 }
 
